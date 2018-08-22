@@ -1,0 +1,185 @@
+doctype html
+html(lang='pl-PL')
+	head
+		include head.pug
+
+	body
+		header
+			include header.pug
+
+		main
+			section(id='o-mnie')
+				div.col-50.no-overflow
+					div.business-card
+						div.data
+							h2 Mira Lenczowska
+							h3 Terapeuta-Opiekun Medyczny
+
+							p.phone 
+								i.fas.fa-mobile-alt
+								span +48 501 873 477
+							p.website 
+								i.fas.fa-keyboard
+								span www.domowa-terapia.com
+						img(src='/public/assets/Misia.svg' alt='logo')
+						div.heart
+
+					a.link.dropdown Moje Kwalifikacje
+					div.dropdown-content.kwalifikacje
+						p Mam kilkunastoletnie doświadczenie w pracy z osobami starszymi, niewidomymi, osobami niepełnosprawnymi i niepełnosprawnymi intelektualnie oraz z osobami z zaburzeniami psychicznymi. Pracowałam w następujących placówkach:
+							ul.quote
+								li Zakład Opiekuńczo Leczniczy
+								li Dom Pomocy Społeczniej
+								li Warsztat Terapii Zajęciowej
+
+						p Posiadam dyplomy uprawniające do prowadzenia:
+							ul.quote
+								li Terapii zajęciowej
+								li Opieki medycznej
+								li Terapii uzależnień
+
+						p Posiadam certyfikaty:
+							ul.quote
+								li Prowadzenia treningu umiejętności społecznych
+								li Rehabilitacji osób z niepełnosprawnością sprzężoną: 
+									ul
+										li autyzm
+										li spektrum autyzmu
+										li zespół aspergera
+								li Skutecznej komunikacji interpersonalnej
+								li Mediacji 
+								li Wiedzy specjalistycznej o seksualności osób niepełnosprawnych
+
+						p Ukończyłam warsztaty:
+							ul.quote
+								li Ceramiczne
+								li Choreoterapii
+
+						p <strong>Prowadzę też zajęcia teatralno-taneczne dla osób starszych i niepełnosprawnych.</strong>
+
+						p Wyroby moich podopiecznych oraz filmy z prób grupy teatralnej mogą Państwo obejrzeć w galerii. Serdecznie zapraszam!
+
+						p.margin-bottom
+							a.link(navto='Galeria') Galeria
+								i.fas.fa-arrow-right
+
+				div.col-50
+					h1 O mnie. Terapia i opieka
+
+					p W rodzinach ludzi dotkniętych chorobą często pojawiają się liczne pytania. Jak troszczyć się o osobę leżącą, niepełnosprawną, po udarze, z postępującą chorobą alzheimera, demencją lub z depresją wieku podeszłego?
+
+					p Często stan zdrowia osoby leżącej nie pozwala na przemieszczanie się, a zatem wyklucza uczestnictwo w terapii grupowej, obecność na zajęciach Środowiskowego Domu Samopomocy czy w Dziennych Domach Seniora. Nierzadko osoba chora nie potrafi - lub z powodu depresji - nie chce samodzielnie wykonać podstawowych czynności życia codziennego. Postępuje znaczne pogorszenie nastroju, w czasie gdy niepełnosprawność dalej się pogłębia. Jak pomóc tym osobom? poprawić jakość ich życia? Jak przywrócić uśmiech na twarzach?
+
+					p <strong>A co by było, gdyby terapeuta przyjeżdżał bezpośrednio do domu osoby chorej?</strong> W ten oto prosty sposób postanowiłam wyjść naprzeciw potrzebom Państwa i Państwa Bliskich. Chętnie przeprowadzę odpowiednią terapię przy chorym w państwa Domu.
+
+					p Mam szczególny zapał do pracy indywidualnej. Dla każdego pacjenta tworzę osobisty plan terapii, dostosowany do potrzeb i możliwości osoby chorej. Stosuję różne formy terapii, włącznie z arteterapią, muzykoterapią, kinezyterapią - usprawnianiem ruchu. 
+
+					p Jeśli przyda się Państwu moja pomoc, proszę niezwłocznie się za mną skontaktować. Pierwsza wizyta wraz z wstępnym szkoleniem na temat metod opieki nad osobą leżącą jest darmowa.
+					a.link(navto="Umów się") Umów się
+						i.fas.fa-arrow-right
+
+
+
+			section(id='galeria')
+				div.col-5
+					h1(style='opacity: 0;') Galeria
+					div
+						each event in app.content.gallery
+							a.link-category.link.hidden-left(href='#' + event.title.replace(/\s/g, '_'))= event.title
+						
+				div.col-95
+					h1 Galeria zdjęć. Terapia i opieka :)
+					nav
+						a.link-button.link.active(href='#' + 'fotografie') 
+							i.fas.fa-images
+							span Zdjęcia
+						a.link-button.link(href='#' + 'wideo')
+							i.fas.fa-film
+							span Filmy
+					div#zdjecia.media
+						each event in app.content.gallery
+							h2(id=event.title.replace(/\s/g, '_'))= event.title
+							div.img-grid
+								each img in event.images
+									div.img-card
+										div.thumbnail-wrapper
+											img.lazy.thumbnail(data=app.content.photoPath + img.src alt=img.title)
+											div.placeholder
+												span
+										if img.title || img.caption
+											div.caption
+												h3= img.title
+												p= img.caption
+
+					div#filmy.media.hidden-gone
+						each video in app.content.videos
+							div
+								iframe(width=video.width height=video.height src=video.src frameborder="0" allow="autoplay; encrypted-media" allowfullscreen)
+
+				
+				div.fab-button.hidden-transparent
+					i.fas.fa-arrow-up
+
+			section(id='pytania')
+				div.col-100
+					img.fixed(src='/public/assets/pytania.svg' alt="ilustracja pielęgnacja osoby leżącej")
+					h1 Najczęściej zadawane pytania
+					each question in app.content.questions
+						div.table
+							h2.open= question.title
+							p.open-content= question.text
+								br
+								br
+								if question.link
+									a.link(navto= question.link.navto)= question.link.text
+										i.fas.fa-arrow-right
+
+					
+			section(id='umow-sie')
+				div.col-50
+					h1 Umów się
+					h2 Pierwsza wizyta z konsultacją jest bezpłatna. Dojazdy do Państwa domu będą zawsze darmowe.
+
+					p Tu mogą Państwo podjąć pierwszy krok w celu zatrudnienia domowej opieki/terapeutki dla siebie lub bliskich. Wszelkie Państwa dane są objęte ścisłą ochroną. Przebieg terapi objęty jest tajemnicą zawodową.
+
+					p Pierwsza wizyta wraz ze szkoleniem informacyjnym są zupełnie bezpłatne. Kontaktując się ze mną, nic Państwo nie ryzykują. 
+
+					p Dojazd jest i zawsze będzie bezpłatny. Nigdy nie obciążę Państwa kosztami dojazdu.
+
+					p Wizyty są niezobowiązujące i jeśli z jakichś przyczyn będą Państwo chcieli przerwać współpracę, mogą to Państwo zrobić w każdym czasie, bez dodatkowych wyjaśnień. W żadnym wypadku nie będę kontaktować się z Państwem bez Państwa zgody.
+
+					p
+						a.link(focus='input') Wypełnij formularz 
+							i.fas.fa-arrow-right
+
+
+				div.col-50
+					form.form(action='/wyslij' method='POST')
+
+						label(for='name')
+							i.fas.fa-user-plus
+							input(id='name' name='name' type='text' required oninvalid='this.setCustomValidity("Proszę wpisać imię")' oninput='this.setCustomValidity("")')
+							span Wpisz imię
+
+						label(for='contact')
+							i.fas.fa-mobile-alt
+							input(id='contact' name='contact' type='text'  required oninvalid='this.setCustomValidity("Proszę wpisać numer telefonu lub email")' oninput='this.setCustomValidity("")')
+							span Telefon lub email
+
+						label(for='message')
+							i.fas.fa-comment-dots
+							textarea(id='message' name='message' cols='80' rows='10' required oninvalid='this.setCustomValidity("Proszę wpisać wiadomość")' oninput='this.setCustomValidity("")')
+							span Wiadomość lub pytanie
+
+						label.checkbox-label(for='permission')
+							input(id='permission' name="permission" type='checkbox' required  oninvalid='this.setCustomValidity("Proszę zaznaczyć zgodę")' oninput='this.setCustomValidity("")')
+							span.checkbox-value(aria-hidden='true')
+								span.checkbox-handle
+							span.permission Rozumiem, że wszelkie informacje, które podaję będą objęte pełną ochroną. Zezwalam, żeby skontaktowała się Pani ze mną.
+
+						input.button(type='submit' value='Wyślij!')
+
+		footer
+			include footer.pug
+		
+		include scripts.pug

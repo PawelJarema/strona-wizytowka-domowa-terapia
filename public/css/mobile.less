@@ -1,0 +1,325 @@
+@media screen and(min-width: 1555px) {
+	section#galeria {
+		.col-95 {
+			.img-grid {
+				grid-template-columns: repeat(5, 1fr);
+			}
+		}
+	}
+}
+
+@media screen and(max-width: 1165px) {
+	* {
+	
+	}
+
+	h1 {
+		text-align: center;
+	}
+
+	.link.link-category {
+		transition: none;
+	}
+
+	.hamburger {
+		.anim-fast;
+		pointer-events: auto;
+		opacity: 0.5;
+	}
+
+	nav.top {
+		.title {
+			margin-right: 88px;
+		}
+
+		.logo {
+			left: calc(100% - 100px);
+		}
+	}
+
+	nav {
+		.nav-buttons {
+			position: fixed !important;
+			transition: none;
+			min-width: 250px;
+			max-width: 370px;
+
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+
+			flex-direction: column;
+
+			li {
+				width: calc(100% - 40px);
+
+				min-width: 250px;
+				max-width: 370px;
+
+				border: 0;
+				border-bottom: 1px solid @uniform-dark;
+				border-top: 1px solid @uniform-light;
+				box-shadow: none;
+
+				&:first-child {
+					border-radius: 0;
+				};
+
+				&:last-child {
+					border-radius: 0;
+				};
+
+				&:hover {
+					transform: none;
+				};
+			}
+		}
+	}
+
+	nav.top {
+		padding-bottom: @margin;
+
+		.nav-buttons {
+			max-width: 100%;
+
+			top: -500px;
+			left: 0;
+			transform: none;
+
+			li {
+				&:hover {
+					opacity: 1;
+					background: @uniform-light;
+				}
+			};
+
+			li.active {
+				background: @orange;
+			}
+		}
+	}
+
+	#umow-sie .form .checkbox-value {
+		top: 13px;
+	}
+
+	.form .checkbox-label span.permission {
+		width: 80%;
+	}
+
+	.form .button {
+		margin: @margin-m auto; 
+	}
+
+	.form {
+		padding-top: @margin-m;
+	}
+
+	footer {
+		margin-left: 2px;
+	}
+
+
+	section {
+		flex-direction: column;
+	}
+
+	section .col-5, section .col-95, section .col-50 {
+		flex: 1 1 100% !important;
+
+		&:last-child {
+			margin-bottom: @margin;
+		}
+	}
+
+
+	section#o-mnie {
+		.col-50.auto-height {
+			&:first-child {
+				max-height: initial;
+			}
+		}
+	}
+
+	section#galeria {
+		margin-top: @margin;
+		padding: 0;
+
+		.col-5 {
+			h1 { display: none; text-align: center; opacity: 1 !important;}
+
+			width: 100%;
+			padding: 0; margin: 0;
+			padding-top: @margin;
+			padding-left: 15px;
+
+			div {
+				text-align: center;
+				width: 100%;
+			}
+		}
+
+		.col-95 {
+			text-align: center;
+
+			#filmy, #zdjecia {
+				width: 100vw;
+			}
+
+			.img-grid {
+				padding: @margin;
+			}
+		}
+
+		.link.link-category {
+			display: inline;
+			text-transform: capitalize;
+			padding-left: 15px;
+			padding-right: 30px;
+			line-height: 30px;
+		}
+	}
+
+	section .img-grid {
+	
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+@media screen and(max-width: 989px) {
+	.col-95 {
+		.img-grid {
+			padding: @margin;
+		}
+	}
+
+	section .img-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media screen and(max-width: 759px) {
+	.col-95 {
+		.img-grid {
+			padding: calc(@margin + 20px);
+		}
+	}
+
+	section.active {
+		padding: @margin;
+
+		.col-50 {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+
+	section#galeria { 
+		.img-grid {
+			grid-template-columns: repeat(2, 1fr);
+			.img-card {
+				margin-bottom: @margin;
+			}
+		}
+
+		.col-95 {
+			margin-top: 0;
+			padding-top: 0;
+		}
+
+		.link.link-category {
+			display: block;
+			padding: 0;
+			line-height: 15px;
+		}
+	}
+}
+
+@media screen and(max-width: 524px) {
+	nav.top {
+		.title {
+			padding-top: 8px;
+			h1 {
+				font-size: 22px;
+			}
+
+			h2 {
+				margin-top: -6px;
+				font-size: 12px;
+			}
+		}
+	}
+
+	section#galeria {
+
+		.col-95 {
+			.img-grid {
+				padding: 0;
+			}
+		}
+
+		.img-grid {
+			grid-template-columns: repeat(1, 1fr);
+		}
+	}
+}
+
+@media screen and(max-width: 450px) {
+	section .col-100 {
+		img.fixed {
+			position: static;
+			margin-bottom: -20px;
+			margin-left: 50%;
+			transition: none;
+			transform: translateX(-50%);
+		}
+
+		padding: 10px;
+
+		.open {
+			padding: 5px;
+			padding-left: 20px;
+
+			&:before {
+				margin-left: -15px;
+			}
+
+			&:after {
+				right: 5px;
+			};
+		}
+
+		.table {
+			width: 100%;
+			padding: 10px;
+		}
+
+		p.open-content.opened {
+		
+		}
+
+		h2, p {
+			max-width: 100% !important;
+			width: 100% !important;
+		}
+	}
+
+	section.active {
+		padding: @margin-s;
+	}
+
+	section .form {
+		padding: @margin-s;
+		padding-top: @margin-m;
+	}
+
+	#o-mnie {
+		.business-card {
+			transform: scale(0.8);
+		}
+	}
+}
+
+@media screen and(max-width: 375px) {
+	
+}
