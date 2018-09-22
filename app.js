@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 var express = require('express'),
 	app = express(),
 	config = require('./config/config'),
+	fs = require('fs'),
 	user = '';
 
 app.content = {
 	title: 'Domowa Terapia. Opieka nad osobami starszymi, niepełnosprawnymi i leżącymi',
 	description: 'Opieka nad seniorem i osobami niepełnosprawnymi w ramach długoterminowej terapii domowej z indywidualnym programem. Krok po kroku przywrócimy radość i sprawność osoby leżącej. Opieka nad seniorem odbywa się w domu osoby chorej.',
-	url: 'www.domowa-terapia.pl',
+	url: 'https://domowa-terapia.pl',
 	photoPath: '/public/assets/thumbnails/',
 	videos: [
 		{
@@ -67,7 +68,7 @@ app.content = {
 			text: 'Koszt mieści się w przedziale od 20zł do 80zł na godzinę. Wszystko zależy od stanu pacjenta i tego, co ustalimy po pierwszej wizycie. Jeśli osoba chora będzie wymagała zarówno terapii, jak wszechstronnej opieki medycznej, cena będzie wyższa. Przy zamówieniu większej ilości godzin, cena będzie progresywnie niższa.',
 			link: {
 				navto: 'Umów się',
-				text: 'Umów się na bezpłatne konsultacje'
+				text: 'Umów się na konsultacje'
 			}
 		},{
 			title: 'Czy Państwa dane są utajnone a przebieg terapii - objęty tajemnicą ?',
@@ -166,7 +167,7 @@ app.content = {
 				},{
 					title: 'Dom Kultury',
 					caption: 'Kolejna odsłona sztuki w nowym miejscu. Uczestnicy zajęć w lokalnym domu kultury oglądają występy naszej grupy.',
-					src: 'Szkoła_Łacińska_Malbork_6497122750418394376_n.jpg'
+					src: 'slm.jpg'
 				},{
 					title: 'Aktorzy w strojach',
 					caption: 'Nasi aktorzy w nowych strojach przygotowują się do następnego występu.',
@@ -515,7 +516,19 @@ app.post('/wyslij', (req, res) => {
 		res.redirect('/dziekuje');
 });
 
-app.listen(8080, () => {
-	console.log('Server active');
+var http = require('http'),
+    https = require('https');
+var privateKey = fs.readFileSync('./config/sslcert/key.key', 'utf8'),
+    certificate = fs.readFileSync('./config/sslcert/primary.crt', 'utf8'),
+    credentials = { key: privateKey, cert: certificate };
+
+var httpServer = http.createServer(function (req, res) {
+    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+    res.end();
 });
- 
+
+var httpsServer = https.createServer(credentials, app);
+
+
+httpServer.listen(80);
+httpsServer.listen(443);
