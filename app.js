@@ -45,7 +45,10 @@ app.content = {
 			text: 'Wszystkie metody opieki nad osobą leżącą przybliżę Państwu na pierwszym spotkaniu. Omówimy metody mycia, ubierania i karmienia. W przypadku seniorów oraz osób szczególnie wymagających, omówimy takie zagadnienia jak oklepywanie pleców osoby starszej, zmiana basenu i pieluch dla osób o dużej wadze ciała. Opowiem Państwu jak umyć głowę osobie leżącej, jak przeciwdziałać odleżynom.'
 		},{
 			title: 'Czy takie formy rehabilitacji jak arteterapia, kinezyterapia czy horikuloterapia można praktykować w warunkach przyłóżkowych ?',
-			text: 'Oczywiście, przy pewnych modyfikacjach, można stosować te metody. Pozwalają one przeciwdziałać depresji, atrofii mięśni i funkcji poznawczych. Budzą poczucie sprawstwa, celu, pozwalają odkrywać talenty, przywracają radość życia i uśmiech na twarzy :)'
+			text: 'Oczywiście, przy pewnych modyfikacjach, można stosować te metody. Pozwalają one przeciwdziałać depresji, atrofii mięśni i funkcji poznawczych. Budzą poczucie sprawstwa, celu, pozwalają odkrywać talenty, przywracają radość życia i uśmiech na twarzy : )'
+		},{
+			title: 'W jakiej miejscowości Pani działa ?',
+			text: 'W chwili obecnej opiekuję się jedynie osobami zamieszkałymi w obrębie Trójmiasta, w województwie pomorskim ( miasto Gdańsk, Sopot i Gdynia )'
 		},{
 			title: 'Jak zamówić bezpłatne konsultacje?',
 			text: 'Wystarczy się ze mną skontaktować i umówić się na pierwsze spotkanie.',
@@ -515,6 +518,8 @@ app.post('/wyslij', (req, res) => {
 
 		res.redirect('/dziekuje');
 });
+
+//app.listen(8080, () => { console.log('listening on 8080') });
 
 var http = require('http'),
     https = require('https');

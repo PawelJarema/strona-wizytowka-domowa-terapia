@@ -23,7 +23,6 @@ html(lang='pl-PL')
 								span= app.content.url
 						img(src='/public/assets/Misia.svg' alt='logo')
 						div.heart
-
 					a.link.dropdown Moje Kwalifikacje
 					div.dropdown-content.kwalifikacje
 						p Mam kilkunastoletnie doświadczenie w pracy z osobami starszymi, niewidomymi, osobami niepełnosprawnymi i niepełnosprawnymi intelektualnie oraz z osobami z zaburzeniami psychicznymi. Pracowałam w następujących placówkach:
@@ -59,9 +58,15 @@ html(lang='pl-PL')
 
 						p Wyroby moich podopiecznych oraz filmy z prób grupy teatralnej mogą Państwo obejrzeć w galerii. Serdecznie zapraszam!
 
+						p
+							a.link(href='https://goo.gl/maps/tvGz8upYi5y' target="_blank") Zobacz moją firmę w Google
+								i.fas.fa-arrow-right
+
 						p.margin-bottom
 							a.link(navto='Galeria') Galeria
 								i.fas.fa-arrow-right
+
+						
 
 				div.col-50
 					h1 O mnie. Terapia i opieka
@@ -77,8 +82,6 @@ html(lang='pl-PL')
 					p Jeśli przyda się Państwu moja pomoc, proszę niezwłocznie się za mną skontaktować. Pierwsza wizyta wraz z wstępnym szkoleniem na temat metod opieki nad osobą leżącą jest darmowa.
 					a.link(navto="Umów się") Umów się
 						i.fas.fa-arrow-right
-
-
 
 			section(id='galeria')
 				div.col-5
@@ -178,6 +181,43 @@ html(lang='pl-PL')
 							span.permission Rozumiem, że wszelkie informacje, które podaję będą objęte pełną ochroną. Zezwalam, żeby skontaktowała się Pani ze mną.
 
 						input.button(type='submit' value='Wyślij!')
+					
+				div.col-100
+					h2 Zasięg opieki:
+					div(id="map")
+					p
+						a.link(href='https://goo.gl/maps/tvGz8upYi5y' target="_blank") ... zobacz moją firmę w Google
+							i.fas.fa-arrow-right
+					script. 
+						var map;
+						function initMap() {
+							var businessCenter = { lat: 54.3602592, lng: 18.7101084 };
+							map = new google.maps.Map(
+								document.getElementById('map'), 
+								{
+									center: businessCenter, 
+									zoom: 9,
+									zoomControl: true,
+									disableDefaultUI: true 
+								}
+							);
+
+							var marker = new google.maps.Marker({position: businessCenter, map: map});
+							var serviceCircle = new google.maps.Circle({
+								strokeColor: '#00CC00',
+								strokeOpacity: 0.6,
+								strokeWeight: 2,
+								fillColor: '#00BB00',
+								fillOpacity: 0.15,
+								map: map,
+								center: businessCenter,
+								radius: (27 * 1000)
+							});
+						}
+
+					script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmYJYbmp21jWXueZH2wij8eNO0N8tUVmg&callback=initMap" async defer)
+
+
 
 		footer
 			include footer.pug
